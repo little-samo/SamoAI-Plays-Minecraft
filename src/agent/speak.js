@@ -18,8 +18,8 @@ function processQueue() {
 
   isSpeaking = true;
   const textToSpeak = speakingQueue.shift();
-  const isWin = process.platform === "win32";
-  const isMac = process.platform === "darwin";
+  const isWin = process.platform === 'win32';
+  const isMac = process.platform === 'darwin';
 
   let command;
 

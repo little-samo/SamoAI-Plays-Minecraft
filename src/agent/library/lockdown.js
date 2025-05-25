@@ -21,6 +21,6 @@ export const makeCompartment = (endowments = {}) => {
     Math,
     Date,
     // standard endowments
-    ...endowments
+    ...endowments,
   });
-}
+};

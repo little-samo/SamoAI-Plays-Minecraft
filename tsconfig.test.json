@@ -1,0 +1,4 @@
+{
+  "extends": "./tsconfig.json",
+  "include": ["src/**/*", "bots/**/*", "profiles/**/*", "tasks/**/*", "eslint.config.mjs"]
+}

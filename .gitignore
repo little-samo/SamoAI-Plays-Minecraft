@@ -1,29 +1,118 @@
-.vscode/
-.idea/
-node_modules/
-package-lock.json
+# compiled output
+/dist
+/node_modules/*
+/build
+
+# yarn
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+
+# Tests
+/coverage
+/.nyc_output
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# dotenv environment variable files
+.env
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+
+# states directory
+/states/*
+!states/**/
+!states/**/.gitkeep
+states/**/*.json
+
+# temp directory
+.temp
+.tmp
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports (https://nodejs.org/api/report.html)
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Project-specific files and directories
+
+# Code recording and scratch files
 code_records/
 scratch.js
+
+# Bot-related files and generated action code
 bots/**/action-code/**
 bots/**/
+
+# API keys and sensitive configuration
 keys.json
+
+# ViaProxy service files and data
 services/viaproxy/jars/**
 services/viaproxy/logs/**
 services/viaproxy/plugins/**
 services/viaproxy/ViaLoader/**
 services/viaproxy/saves.json
 services/viaproxy/viaproxy.yml
+
+# Temporary directories
 tmp/
+
+# Machine learning and experiment tracking
 wandb/
 experiments/
+src/models/logs/*
+
+# Generated results and data
+results/*
+server_data/*
+server_data*
+
+# User-specific JSON files
 andy_*.json
 jill_*.json
-src/models/logs/*
-server_data/*
-results/*
+
+# Construction task data
 tasks/construction_tasks/test_multiagent_construction_tasks.json
 tasks/construction_tasks/train_multiagent_construction_tasks.json
 tasks/construction_tasks/test/**
 tasks/construction_tasks/train/**
-server_data*
-**/.DS_Store
