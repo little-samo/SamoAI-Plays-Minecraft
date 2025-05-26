@@ -1,3 +1,8 @@
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
+
 const settings = {
   minecraft_version: '1.21.1', // supports up to 1.21.1
   host: '127.0.0.1', // or "localhost", "your.ip.address.here"
