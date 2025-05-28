@@ -1,4 +1,3 @@
-import EventEmitter from 'events';
 import path from 'path';
 
 import {
@@ -593,7 +592,7 @@ async function main(): Promise<void> {
         await WorldManager.instance.updateLocation(userId, locationId, {
           preAction: async (location: Location) => {
             // Setup event handlers for agent thinking/responses
-            (location as unknown as EventEmitter).on(
+            location.on(
               'agentExecuteNextActions',
               async (samoAgent: SamoAgent) => {
                 const agent = agents.find(
@@ -606,7 +605,7 @@ async function main(): Promise<void> {
             );
 
             // Setup messageAdded event handler for processing agent actions
-            (location as unknown as EventEmitter).on(
+            location.on(
               'messageAdded',
               async (_loc: Location, message: LocationMessage) => {
                 // Skip user messages and empty messages
