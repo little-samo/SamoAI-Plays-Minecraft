@@ -11,6 +11,13 @@ import {
   LocationMessage,
   EntityType,
 } from '@little-samo/samo-ai';
+import {
+  AgentStorage,
+  GimmickStorage,
+  ItemStorage,
+  LocationStorage,
+  UserStorage,
+} from '@little-samo/samo-ai-repository-storage';
 import { Bot } from 'mineflayer';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -28,11 +35,6 @@ import { Prompter } from './models/prompter.js';
 import { mainProxy } from './process/main_proxy.js';
 import { createMindServer } from './server/mind_server.js';
 import settings from './settings.js';
-import { AgentStorage } from './storage/agent.storage';
-import { GimmickStorage } from './storage/gimmick.storage';
-import { ItemStorage } from './storage/item.storage';
-import { LocationStorage } from './storage/location.storage';
-import { UserStorage } from './storage/user.storage';
 import { initBot } from './utils/mcdata.js';
 
 // Extended Bot type with mindcraft-specific properties
@@ -473,13 +475,20 @@ async function main(): Promise<void> {
     path.join(process.cwd(), 'models', 'agents'),
     path.join(process.cwd(), 'states', 'agents')
   );
-  const gimmickStorage = new GimmickStorage();
-  const itemStorage = new ItemStorage();
+  const gimmickStorage = new GimmickStorage(
+    path.join(process.cwd(), 'states', 'gimmicks')
+  );
+  const itemStorage = new ItemStorage(
+    path.join(process.cwd(), 'states', 'items')
+  );
   const locationStorage = new LocationStorage(
     path.join(process.cwd(), 'models', 'locations'),
     path.join(process.cwd(), 'states', 'locations')
   );
-  const userStorage = new UserStorage();
+  const userStorage = new UserStorage(
+    path.join(process.cwd(), 'models', 'users'),
+    path.join(process.cwd(), 'states', 'users')
+  );
 
   // Initialize WorldManager
   WorldManager.initialize({
@@ -508,9 +517,7 @@ async function main(): Promise<void> {
   await agentStorage.initialize(agentNames);
 
   // Get location and user IDs
-  const locationId = Number(
-    Object.keys(locationStorage.database.locations)[0]
-  ) as LocationId;
+  const locationId = Number(locationStorage.getLocationIds()[0]) as LocationId;
   const userId = 1 as UserId;
 
   // Initialize location state (like cli.ts)
@@ -533,9 +540,7 @@ async function main(): Promise<void> {
 
   // Create Minecraft agents
   const agents: MinecraftAgent[] = [];
-  const agentIds = Object.keys(agentStorage.database.agents).map(
-    (id) => Number(id) as AgentId
-  );
+  const agentIds = agentStorage.getAgentIds();
 
   for (let i = 0; i < agentNames.length; i++) {
     const agentName = agentNames[i];

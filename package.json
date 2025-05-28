@@ -9,14 +9,14 @@
     "scripts": {
         "postinstall": "patch-package",
         "start": "tsx src/main.ts",
-        "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "lint": "eslint --fix"
     },
     "dependencies": {
         "@anthropic-ai/sdk": "^0.17.1",
         "@google/generative-ai": "^0.2.1",
         "@huggingface/inference": "^2.8.1",
-        "@little-samo/samo-ai": "0.0.5",
+        "@little-samo/samo-ai": "0.0.7",
+        "@little-samo/samo-ai-repository-storage": "0.0.7",
         "@mistralai/mistralai": "^1.1.0",
         "canvas": "^3.1.0",
         "cheerio": "^1.0.0",
